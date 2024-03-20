@@ -12,20 +12,29 @@ interface DataType {
     types: object[],
 }
 
+interface ArrayInterface {
+    [key: number] : DataType[];
+}
 
 
-export default function CardContainer() {
-    const [pokemon, setPokemon] = useState<DataType[]>([]);
+export default function CardContainer({searchbar}: {searchbar: string}) {
+
+    const [pokemon, setPokemon] = useState<ArrayInterface[]>([]);
+
+    
 
     const fetchData = () => {
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=49&offset=0", {
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=12&offset=0", {
             method: "GET",
             headers: {
                 Accept: "application/json",
                 'Content-Type': "application/json",
             }
         }).then((response) => response.json()).then((dataArr):void => {
+
             for (let i = 0; i < dataArr.results.length; i++){
+                
+
                 fetch(dataArr.results[i].url, {
                     method: "GET",
                     headers: {
@@ -48,22 +57,44 @@ export default function CardContainer() {
                         "sprites" : sprites,
                         "types" : types,
                     }
-                    setPokemon(prevPokemon => [...prevPokemon, newObj])
+                    setPokemon((prev) => [...prev, newObj])
                 });
             }
         })
     }
     useEffect(fetchData, []);
+
+    let content;
+    if (searchbar === ""){
+        content = 
+            <>
+                {pokemon.map((item) => <div key={item.name} className="card">
+                    <figure>
+                        <img src={item.sprites.front_default} alt={`image of ${item.name} pokemon`} />
+                    </figure>
+                    <h1>{item.name}</h1>
+                </div>)}
+            </>
+    } else {
+        let copyPokemon = pokemon.slice();
+        let filtered = copyPokemon.filter((item) => item.name.includes(searchbar))
+
+        content = 
+            <>
+                {filtered.map((item) => <div key={item.name} className="card">
+                    <figure>
+                        <img src={item.sprites.front_default} alt={`image of ${item.name} pokemon`} />
+                    </figure>
+                    <h1>{item.name}</h1>
+                </div>)}
+            </>
+    }
+ 
+
   return (   
 
     <section id="card-container">
-        
-            {pokemon.map(item => <div key={item.id} className="card">
-                <figure>
-                    <img src={item.sprites.front_default} alt={`images of pokemon ${item.name}`}/>
-                </figure>
-                <h1>{item.name}</h1>
-            </div>)}
+        {content}
     </section>
   )
 }
