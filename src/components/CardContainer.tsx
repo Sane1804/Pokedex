@@ -40,7 +40,8 @@ export default function CardContainer({searchbar}: {searchbar: string}) {
                         'Content-type': "application/json"
                     }
                 }).then((response) => response.json()).then((data) => {
-                    let {name, id, sprites, types} = data;
+                    console.log(data)
+                    let {name, id, sprites, types, order} = data;
 
                     let {front_default, front_shiny} = sprites;
 
@@ -54,6 +55,7 @@ export default function CardContainer({searchbar}: {searchbar: string}) {
                         "id" : id,
                         "sprites" : sprites,
                         "types" : types,
+                        "order" : order,
                     }
                     setPokemon((prev) => [...prev, newObj])
                 });
