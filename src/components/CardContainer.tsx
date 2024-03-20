@@ -12,14 +12,12 @@ interface DataType {
     types: object[],
 }
 
-interface ArrayInterface {
-    [key: number] : DataType[];
-}
+
 
 
 export default function CardContainer({searchbar}: {searchbar: string}) {
 
-    const [pokemon, setPokemon] = useState<ArrayInterface[]>([]);
+    const [pokemon, setPokemon] = useState<DataType[]>([]);
 
     
 
