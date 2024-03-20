@@ -3,7 +3,7 @@ import Searchbar from "./Searchbar"
 
 export default function Pokemons() {
   return (
-    <div id="poke">
+    <div id="pokemons">
         <Searchbar/>
         <CardContainer/>
     </div>

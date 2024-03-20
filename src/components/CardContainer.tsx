@@ -18,7 +18,7 @@ export default function CardContainer() {
     const [pokemon, setPokemon] = useState<DataType[]>([]);
 
     const fetchData = () => {
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0", {
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=49&offset=0", {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -56,13 +56,14 @@ export default function CardContainer() {
     useEffect(fetchData, []);
   return (   
 
-    <div id="card-container">
-        {pokemon.map(item => <div key={item.id} className="card">
-            <figure>
-                <img src={item.sprites.front_default} alt={`images of pokemon ${item.name}`}/>
-            </figure>
-            <h1>{item.name}</h1>
-        </div>)}
-    </div>
+    <section id="card-container">
+        
+            {pokemon.map(item => <div key={item.id} className="card">
+                <figure>
+                    <img src={item.sprites.front_default} alt={`images of pokemon ${item.name}`}/>
+                </figure>
+                <h1>{item.name}</h1>
+            </div>)}
+    </section>
   )
 }
