@@ -29,7 +29,7 @@ export default function CardContainer({searchbar}: {searchbar: string}) {
     
 
     const fetchData = () => {
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=150&offset=0", {
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=600&offset=0", {
             method: "GET",
             headers: {
                 Accept: "application/json",
