@@ -15,8 +15,6 @@ interface CardInterface {
     types: string[]
 }
 
-
-
 interface PokemoDataInterface {
     pokemonData : CardInterface[],
     searched : string

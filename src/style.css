@@ -58,6 +58,8 @@ html{
 
 body {
   height: 100%;
+  background-color: #fcff82;
+  font-family: "Pridi", serif;
 }
 
 /*NAV*/
@@ -115,10 +117,11 @@ body {
 #pokemons {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200px 1fr;
+  grid-template-rows: 200px 1fr 36px;
   grid-template-areas: "search-bar"
                        "card-container";
   background-color: #fcff82;
+  min-height: 82vh;
 }
 
 #search-bar-container {
@@ -161,7 +164,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border:1px solid black;
+  font-size: 3rem;
+  color:  rgb(105, 182, 105);
+  text-shadow: 1px 1px black;
 }
 
 
@@ -251,8 +256,8 @@ body {
 #home {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200px 1fr;
-  grid-template-areas: "background-header"
+  grid-template-rows: 200px 1fr 36px;
+  grid-template-areas: "background-header",
                        "about-section";
 }
 
@@ -261,20 +266,63 @@ body {
   background-size: contain;
 }
 
-#about-section {
-  box-shadow: inset 0 10px 5px rgb(101, 175, 101);
-  padding: 20px;
+#main {
+  box-shadow: inset 0 10px 5px rgb(105, 182, 105);
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 
 .welcome-header {
   font-size: 4rem;
-  font-family: "Pridi", sans-serif;
   font-weight: 700;
-  color: #FFD700;
+  color:  rgb(105, 182, 105);
   text-align: center;
-  text-shadow: 3px 3px blue;
+  text-shadow: 3px 3px black;
+  margin-bottom: 30px;
 }
+
+
+#main > p {
+  font-size: 1.1rem;
+}
+
+#main > a > button{
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #FFD700;
+  border: 1px solid blue;
+  box-shadow: 3px 3px blue;
+  color: blue;
+  font-weight: 600;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#main > a > button:focus {
+  position: relative;
+  left: 1px;
+  right: 1px;
+  box-shadow: 2px 2px blue;
+}
+
+#footer {
+  position: relative;
+  margin-top: auto;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background-color:  rgb(105, 182, 105);
+  box-shadow: 0 -5px 5px rgb(105, 182, 105);
+  color: white;
+}
+
+
+
 
 
 
