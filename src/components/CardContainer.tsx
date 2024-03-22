@@ -26,10 +26,8 @@ export default function CardContainer({searchbar}: {searchbar: string}) {
 
     const [pokemon, setPokemon] = useState<DataType[]>([]);
 
-    
-
     const fetchData = () => {
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=600&offset=0", {
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=30&offset=0", {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -71,9 +69,9 @@ export default function CardContainer({searchbar}: {searchbar: string}) {
                     
 
                     setPokemon(prev => [...prev, newObj])
-                });
+                }).catch((error) => alert(error));
             }
-        })
+        }).catch((error) => alert(error))
 
     }
     useEffect(fetchData, []);

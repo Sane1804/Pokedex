@@ -1,4 +1,5 @@
 import ImageSymbolType from "./ImageSymbolType"
+import PokemonImage from "./PokemonImage"
 
 
 interface SpritesInterface {
@@ -23,9 +24,6 @@ interface PokemoDataInterface {
 
 
 
-
-
-
 export default function Card({pokemonData, searched}: PokemoDataInterface) {
     
     let copyPokemonData = pokemonData.slice().sort((a, b) => a.id - b.id)
@@ -37,24 +35,23 @@ export default function Card({pokemonData, searched}: PokemoDataInterface) {
     content = copyPokemonData.map((item) => <div key={item.id} className="card">
         <p className="pokemonId">{item.id}</p>
         <ImageSymbolType types={item.types}/>
-
-        <figure>
-            <img src={item.sprites.front_default} alt={`images of ${item.name} pokemon`} />
-        </figure>
-        <h1>{item.name}</h1>
+        <PokemonImage front_default={item.sprites.front_default} front_shiny={item.sprites.front_shiny} name={item.name}/>
     </div>)
 
     } else {
 
-        let filteredData = copyPokemonData.filter((item) => item.name.includes(searched) || item.id === Number(searched) || item.types.includes(searched))
+        let filteredData = copyPokemonData.filter((item) => item.name.includes(searched) || item.id === Number(searched) || item.types.includes(searched));
+
+        if (filteredData.length > 0){
         content = filteredData.map((item) => <div key={item.id} className="card">
             <p className="pokemonId">{item.id}</p>
             <ImageSymbolType types={item.types}/>
-            <figure>
-                <img src={item.sprites.front_default} alt={`images of ${item.name} pokemon`} />
-            </figure>
-            <h1>{item.name}</h1>
+            <PokemonImage front_default={item.sprites.front_default} front_shiny={item.sprites.front_shiny} name={item.name}/>
         </div>)
+
+        } else {
+            content = <div id="no-result">No Results</div>
+        }
 
     }
 

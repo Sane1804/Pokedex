@@ -87,7 +87,7 @@ export default function ImageSymbolType({types} : {types : string[]}) {
     })
 
   return (
-    <div id="types-container">
+    <div id="symbols-container">
         {content}
     </div>
   )
